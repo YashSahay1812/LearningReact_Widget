@@ -21,8 +21,15 @@ const Search = () => {
             setResult(data.query.search);
             console.log(results);
         }
-
-        if(term) search();  //To avoid errors while term is blank
+        
+        // Search will not be triggered with blank term parameter
+        if(term) {
+            if(!results.length) search();   //This will run only if code is rendering for the first time (Since we don't want any delay)
+            else{
+                const timeoutId = setTimeout(search,1000);
+                return () => clearTimeout(timeoutId);            
+            }
+        } 
 
     },[term]);
 
