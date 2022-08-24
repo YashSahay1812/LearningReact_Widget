@@ -17,6 +17,15 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         }
     );
 
+    useEffect(() => {
+        
+        const onBodyClick = () => {
+            setOpen(false);
+        }
+
+        document.body.addEventListener('click', onBodyClick, {capture: true});
+    },[]);
+
     return (
 
         <>
