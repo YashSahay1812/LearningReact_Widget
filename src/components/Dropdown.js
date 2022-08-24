@@ -26,7 +26,9 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         }
         // We could have also checked event bubbling instead, but that's not a good practice
 
-        document.body.addEventListener('click', (event) => {onBodyClick(event)}, {capture: true});
+        document.body.addEventListener('click', onBodyClick, {capture: true});
+
+        return () => { document.body.removeEventListener('click', onBodyClick, {capture: true}); };
 
     },[]);
 
