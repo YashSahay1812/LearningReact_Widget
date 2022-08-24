@@ -36,13 +36,13 @@ const options = [
 const App = () => {
     
     const [selected, setSelected] = useState(options[0]);
-    const [showDropdown, setDropdown] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
 
     return (
         <div>
             {/* <Accordion items={items} /> */}
             {/* <Search /> */}
-            <button onClick={() => {setDropdown(!showDropdown)}} > Toggle Dropdown </button>
+            <button onClick={() => {setShowDropdown(!showDropdown)}} > Toggle Dropdown </button>
             {
                 showDropdown ? 
                 <>
@@ -53,7 +53,7 @@ const App = () => {
                     />
                     <h3 style={{color:`${selected.value}`, fontStyle:"italic"}}>This text is {selected.label}!</h3>
                 </> : null
-            }
+            }   
         </div>
     );
 }
