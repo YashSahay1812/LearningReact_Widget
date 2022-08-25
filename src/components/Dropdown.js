@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ options, selected, onSelectedChange, dropdownLabel }) => {
 
     const [open, setOpen] = useState(false);
     const ref = useRef();
@@ -36,7 +36,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
 
         <div className="ui form" ref={ref}>     {/* Assigning ref to outermost parent element returned by Dropdown component*/}
             <div className="field">
-                <label className="label">Select a Color</label>
+                <label className="label">{dropdownLabel}</label>
                 <div className={`ui selection dropdown ${open ? 'visible active' : ''}`} onClick={() => {setOpen(!open)}} >
                     <i className="dropdown icon"></i>
                     <div className="text">{selected.label}</div>
