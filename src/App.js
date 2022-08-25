@@ -38,20 +38,42 @@ const App = () => {
     
     const [selected, setSelected] = useState(options[0]);
 
+    const showAccordion = () => {
+        if(window.location.pathname === '/')
+            return <Accordion items={items} />;
+    }
+
+    const showSearch = () => {
+        if(window.location.pathname === '/list')
+            return <Search />;
+    }
+
+    const showDropdown = () => {
+        if(window.location.pathname === '/dropdown')
+            return (
+                <>
+                    <Dropdown 
+                        options={options} 
+                        selected={selected} 
+                        onSelectedChange={setSelected}
+                        dropdownLabel={"Select a color"} 
+                    />
+                    <h3 style={{color:`${selected.value}`, fontStyle:"italic"}}>This text is {selected.label}!</h3>
+                </>
+            );
+    }
+
+    const showTranslate = () => {
+        if(window.location.pathname === '/translate')
+            return <Translate />;
+    }
+
     return (
         <div>
-            {/* <Accordion items={items} /> */}
-            {/* <Search /> */}
-            {/* <>
-                <Dropdown 
-                    options={options} 
-                    selected={selected} 
-                    onSelectedChange={setSelected}
-                    dropdownLabel={"Select a color"} 
-                />
-                <h3 style={{color:`${selected.value}`, fontStyle:"italic"}}>This text is {selected.label}!</h3>
-            </> */}
-            <Translate />
+            {showAccordion()}
+            {showSearch()}
+            {showDropdown()}
+            {showTranslate()}
         </div>
     );
 }
