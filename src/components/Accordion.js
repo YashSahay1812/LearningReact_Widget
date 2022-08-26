@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Accordion = ({items}) => {
 
     const [activeIndex, setActiveIndex] = useState(null);
+    const ref = useRef();
 
     const onTitleClick = (index) => {
         setActiveIndex(index);
@@ -25,8 +26,21 @@ const Accordion = ({items}) => {
         );
     });
 
+    useEffect(() => {
+
+        const onBodyClick = (event) => {
+            if(!ref.current.contains(event.target))   
+                setActiveIndex(-1);
+        }
+
+        document.body.addEventListener('click', onBodyClick);
+
+        return () => document.body.removeEventListener('click', onBodyClick);
+
+    },[]);
+
     return (
-        <div className="ui styled accordion"> 
+        <div className="ui styled accordion" ref={ref}> 
             {renderedItems}
         </div>
     );
