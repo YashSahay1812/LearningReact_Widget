@@ -8,7 +8,7 @@ const Dropdown = ({ options, selected, onSelectedChange, dropdownLabel }) => {
     const renderedOptions = options.map(
         (option) => {
 
-            if(selected.value === option.value) return null;
+            if(selected.value === option.value) return null;    //if selected don't show in dropdown
 
             return (
                 <div key={option.value} className="item" onClick={ () => onSelectedChange(option) }>
